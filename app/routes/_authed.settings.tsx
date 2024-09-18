@@ -1,6 +1,6 @@
 const SettingsPage = () => {
   return (
-    <div className="space-y-6 lg:p-6 lg:pt-4 box-content flex flex-col h-full overflow-auto">
+    <div className="h-full space-y-6 lg:p-6 lg:pt-4">
       <div className="space-y-0.5 sticky">
         <h2 className="text-2xl font-bold tracking-tight">Settings</h2>
         <p className="text-muted-foreground">
@@ -12,8 +12,8 @@ const SettingsPage = () => {
         role="none"
         className="shrink-0 bg-border h-[1px] w-full mt-6 inline-flex"
       />
-      <div className="flex-col space-y-8 lg:flex-row lg:space-x-12 lg:space-y-0 h-full flex">
-        <aside className="-mx-4 lg:w-1/5 top-0">
+      <div className="flex flex-row h-full space-x-10">
+        <aside className="-mx-4 lg:w-1/5 sticky top-0">
           <nav className="flex space-x-2 lg:flex-col lg:space-x-0 lg:space-y-1">
             <a
               className="inline-flex items-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:text-accent-foreground h-9 px-4 py-2 bg-muted hover:bg-muted justify-start"
@@ -47,9 +47,9 @@ const SettingsPage = () => {
             </a>
           </nav>
         </aside>
-        <div className="max-h-[calc(100lvh-163px)] overflow-auto flex-grow">
-          <div className="flex-1 lg:max-w-2xl ">
-            <div className="space-y-6">
+        <div className="overflow-auto w-full flex-1 h-full">
+          <div className="max-w-2xl flex-1 pl-2 h-[calc(100%+200px)]">
+            <div className="space-y-6 ">
               <div>
                 <h3 className="text-lg font-medium">Profile</h3>
                 <p className="text-sm text-muted-foreground">
