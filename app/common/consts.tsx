@@ -1,9 +1,9 @@
 import {
   AtSign,
-  Bell,
   BookUser,
   CalendarDays,
   LayoutDashboard,
+  MessagesSquare,
   Settings,
   SquareCheck,
 } from "lucide-react";
@@ -21,12 +21,12 @@ export const SIDE_BAR = [
     href: "/mail",
     children: [],
   },
-  {
-    title: "Notifications",
-    Icon: Bell,
-    href: "/notifications",
-    children: [],
-  },
+  // {
+  //   title: "Notifications",
+  //   Icon: Bell,
+  //   href: "/notifications",
+  //   children: [],
+  // },
   {
     title: "Calendar",
     Icon: CalendarDays,
@@ -53,18 +53,36 @@ export const SIDE_BAR = [
     ],
   },
   {
+    title: "Chat",
+    Icon: MessagesSquare,
+    href: "/chat",
+    children: [],
+  },
+  {
     title: "Settings",
     Icon: Settings,
     href: "/settings",
     children: [
-      {
-        title: "Profile",
-        href: "/settings/profile",
-      },
-      {
-        title: "Account",
-        href: "/settings/account",
-      },
+      // {
+      //   title: "Profile",
+      //   href: "/settings/profile",
+      // },
+      // {
+      //   title: "Account",
+      //   href: "/settings/account",
+      // },
+      // {
+      //   title: "Appearance",
+      //   href: "/settings/appearance",
+      // },
+      // {
+      //   title: "Notifications",
+      //   href: "/settings/notifications",
+      // },
+      // {
+      //   title: "Display",
+      //   href: "/settings/display",
+      // },
     ],
   },
   {
