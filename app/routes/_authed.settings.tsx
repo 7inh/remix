@@ -239,7 +239,6 @@ const SettingsPage = () => {
                 </button>
               </form>
             </div>
-            <div className="h-[1000px]"></div>
           </div>
         </div>
       </div>
