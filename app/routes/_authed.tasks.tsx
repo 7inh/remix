@@ -1,6 +1,6 @@
 export default function TaskPage() {
   return (
-    <div className="space-y-4 p-6 pt-4">
+    <div className="space-y-4 lg:p-6 lg:pt-4">
       <div className="flex items-center justify-between">
         <div className="flex flex-1 items-center space-x-2">
           <input
@@ -88,7 +88,7 @@ export default function TaskPage() {
       <div className="rounded-md overflow-hidden border">
         <div className="relative w-full overflow-auto h-[calc(100vh-150px)]">
           <table className="w-full caption-bottom text-sm">
-            <thead className="sticky top-0 bg-white z-50">
+            <thead className="sticky top-0 bg-white z-10">
               <tr className="transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
                 <th
                   className="h-10 px-2 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
@@ -211,7 +211,7 @@ export default function TaskPage() {
                   colSpan={1}
                 />
               </tr>
-              <tr className="relative z-50 overflow-hidden">
+              <tr className="relative z-10 overflow-hidden">
                 <th
                   colSpan={6}
                   className="absolute top-0 z-10 border-t h-[1px] w-full"

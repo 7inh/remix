@@ -1,3 +1,19 @@
+import { MetaFunction } from "@remix-run/node";
+
+export const meta: MetaFunction = () => {
+  return [
+    { title: "Settings" },
+    {
+      property: "og:title",
+      content: "Very cool app",
+    },
+    {
+      name: "description",
+      content: "This app is the best",
+    },
+  ];
+};
+
 const SettingsPage = () => {
   return (
     <div className="h-full space-y-6 lg:p-6 lg:pt-4">

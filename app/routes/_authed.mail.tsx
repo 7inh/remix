@@ -1,6 +1,6 @@
 export default function MailPage() {
   return (
-    <div className="overflow-hidden h-full">
+    <div className="overflow-hidden h-full border rounded-lg lg:border-none">
       <div
         className="flex w-full data-[panel-group-direction=vertical]:flex-col h-full items-stretch"
         data-panel-group
