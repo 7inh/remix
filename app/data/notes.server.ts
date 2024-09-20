@@ -20,9 +20,14 @@ export async function listNotes(authorId: number): Promise<Note[]> {
     where: {
       authorId,
     },
-    orderBy: {
-      createdAt: "desc",
-    },
+    orderBy: [
+      {
+        createdAt: "desc",
+      },
+      {
+        id: "desc",
+      },
+    ],
   });
 }
 
@@ -35,5 +40,13 @@ export async function updateNote(
       id: noteId,
     },
     data: payload,
+  });
+}
+
+export async function deleteNote(noteId: number): Promise<void> {
+  await prisma.note.delete({
+    where: {
+      id: noteId,
+    },
   });
 }

@@ -3,7 +3,12 @@ import { useFetcher, useLoaderData } from "@remix-run/react";
 import { CircleCheck, Palette } from "lucide-react";
 import { Button } from "~/components/ui/Button";
 import NoteCard from "~/components/ui/NoteCard";
-import { createNote, listNotes, updateNote } from "~/data/notes.server";
+import {
+  createNote,
+  deleteNote,
+  listNotes,
+  updateNote,
+} from "~/data/notes.server";
 
 export interface NotesPageProps {}
 
@@ -55,6 +60,12 @@ export const action = async ({ request }: ActionFunctionArgs) => {
           body: note,
           favorite,
         });
+      }
+      return new Response(null, { status: 200 });
+    }
+    case "DELETE": {
+      if (noteId) {
+        await deleteNote(Number(noteId));
       }
       return new Response(null, { status: 200 });
     }

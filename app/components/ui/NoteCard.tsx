@@ -1,6 +1,6 @@
 import { Note } from "@prisma/client";
 import { useFetcher } from "@remix-run/react";
-import { CircleCheck, Palette, Pencil, Star } from "lucide-react";
+import { CircleCheck, Palette, Pencil, Star, Trash2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Button } from "~/components/ui/Button";
 import usePrevious from "~/hooks/usePrevious";
@@ -56,6 +56,15 @@ const NoteCard = ({ note }: NodeCardProps) => {
     });
   };
 
+  const handleDelete = async () => {
+    const formData = new FormData();
+    formData.append("noteId", note.id.toString());
+    fetcher.submit(formData, {
+      method: "DELETE",
+      action: "/notes",
+    });
+  };
+
   useEffect(() => {
     if (preState && preState !== isUpdated) {
       setIsEditing(false);
@@ -63,7 +72,7 @@ const NoteCard = ({ note }: NodeCardProps) => {
   }, [isUpdated, preState]);
 
   return (
-    <div className="relative w-full h-64 flex flex-col justify-between dark:bg-gray-800 bg-white dark:border-gray-700 rounded-lg border border-gray-400 p-4">
+    <div className="group relative w-full h-64 flex flex-col justify-between dark:bg-gray-800 bg-white dark:border-gray-700 rounded-lg border border-gray-200 p-4 hover:shadow-sm">
       {isEditing ? (
         <form onSubmit={handleEdit}>
           <input
@@ -83,12 +92,12 @@ const NoteCard = ({ note }: NodeCardProps) => {
         </form>
       ) : null}
       <div>
-        <h4 className="text-gray-800 dark:text-gray-100 font-bold mb-3">
+        {/* <h4 className="text-gray-800 dark:text-gray-100 font-bold mb-3">
           {note.title}
-        </h4>
+        </h4> */}
         <p className="text-gray-800 dark:text-gray-100 text-sm">{note.body}</p>
       </div>
-      <div>
+      <div className="opacity-0 group-hover:opacity-100 transition-all duration-500">
         <div className="flex items-center justify-between text-gray-800 dark:text-gray-100 gap-2">
           <p className="text-sm flex-grow">
             {note.createdAt &&
@@ -101,20 +110,26 @@ const NoteCard = ({ note }: NodeCardProps) => {
           <button
             onClick={handleToggleFavorite}
             className={`size-6 rounded-full ring-1 ${
-              note.favorite ? "ring-yellow-400" : "ring-zinc-700"
+              note.favorite ? "ring-zinc-700" : "ring-zinc-700"
             } text-white flex items-center justify-center`}
           >
             <Star
               className={`size-4 ${
-                favorite ? "fill-yellow-400" : "text-zinc-700"
+                favorite ? "fill-zinc-700" : "text-zinc-700"
               }`}
             />
           </button>
           <button
             onClick={() => setIsEditing(true)}
-            className="size-6 rounded-full bg-zinc-700 dark:bg-gray-100 dark:text-gray-800 text-white flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-black"
+            className="size-6 rounded-full text-zing-700 ring-1 ring-zinc-900 flex items-center justify-center"
           >
             <Pencil className="size-3" />
+          </button>
+          <button
+            onClick={handleDelete}
+            className={`hover:bg-destructive hover:text-white size-6 rounded-full ring-1 ring-destructive text-destructive flex items-center justify-center`}
+          >
+            <Trash2 className="size-4" />
           </button>
         </div>
       </div>
