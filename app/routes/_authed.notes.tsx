@@ -1,7 +1,8 @@
 import { ActionFunctionArgs, MetaFunction } from "@remix-run/node";
-import { useFetcher } from "@remix-run/react";
-import { CircleCheck } from "lucide-react";
-import { createNote } from "~/data/notes.server";
+import { useFetcher, useLoaderData } from "@remix-run/react";
+import { CircleCheck, Palette } from "lucide-react";
+import NodeCard from "~/components/ui/NoteCard";
+import { createNote, listNotes } from "~/data/notes.server";
 
 export interface NotesPageProps {}
 
@@ -19,20 +20,29 @@ export const meta: MetaFunction = () => {
   ];
 };
 
+export const loader = async () => {
+  const userId = 1; // TODO: get the user id from the cookie
+  const notes = await listNotes(userId);
+
+  return { notes };
+};
+
 export const action = async ({ request }: ActionFunctionArgs) => {
   switch (request.method) {
     case "POST": {
       const formData = new URLSearchParams(await request.text());
       const note = formData.get("note")?.trim();
       if (note) {
-        const newNote = await createNote({
+        await createNote({
           authorId: 1,
           body: note,
           title: "New Note",
+          createdAt: new Date(),
         });
-        console.log({ newNote });
       }
-      return new Response(null, { status: 200 });
+      return new Response(null, {
+        status: 200,
+      });
     }
     default: {
       return new Response(null, { status: 405 });
@@ -42,21 +52,48 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 
 const NotesPage = () => {
   const fetcher = useFetcher();
+  const { notes } = useLoaderData<typeof loader>();
+
+  const handleSave = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    fetcher.submit(formData, {
+      method: "POST",
+    });
+    e.currentTarget.reset();
+  };
+
   return (
     <div className="h-full overflow-auto lg:p-4">
-      <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
-        <fetcher.Form className="relative group" method="post">
+      <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-4">
+        <fetcher.Form
+          className="relative group"
+          method="post"
+          onSubmit={handleSave}
+        >
           <textarea
             name="note"
-            className="resize-none w-full h-64 flex flex-col justify-between dark:bg-gray-800 bg-white dark:border-gray-700 rounded-lg border border-gray-400 p-4"
+            className="resize-none w-full h-full flex flex-col justify-between dark:bg-gray-800 bg-white dark:border-gray-700 rounded-lg border border-gray-400 p-4"
             placeholder="Add new note"
           ></textarea>
-          <div className="hidden group-focus-within:block absolute bottom-0 right-0 m-4 h-fit">
+          <div className="gap-1.5 hidden group-focus-within:flex absolute bottom-0 right-0 m-4 h-fit">
+            <button className="block">
+              <Palette className="text-primary" />
+            </button>
             <button type="submit" className="block">
               <CircleCheck className="text-green-600 cursor-pointer" />
             </button>
           </div>
         </fetcher.Form>
+        {notes.map((note) => (
+          <NodeCard
+            key={note.id}
+            note={{
+              ...note,
+              createdAt: note.createdAt ? new Date(note.createdAt) : null,
+            }}
+          />
+        ))}
         <div className="w-full h-64 flex flex-col justify-between dark:bg-gray-800 bg-white dark:border-gray-700 rounded-lg border border-gray-400 p-4">
           <div>
             <h4 className="text-gray-800 dark:text-gray-100 font-bold mb-3">

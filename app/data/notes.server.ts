@@ -12,3 +12,16 @@ export async function createNote(payload: Omit<Note, "id">): Promise<Note> {
     },
   });
 }
+
+export async function listNotes(authorId: number): Promise<Note[]> {
+  if (!authorId) return [];
+
+  return prisma.note.findMany({
+    where: {
+      authorId,
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+}
