@@ -4,6 +4,7 @@ import {
   CalendarDays,
   LayoutDashboard,
   MessagesSquare,
+  NotebookPen,
   Settings,
   SquareCheck,
 } from "lucide-react";
@@ -51,6 +52,12 @@ export const SIDE_BAR = [
         href: "/tasks/in-progress",
       },
     ],
+  },
+  {
+    title: "Notes",
+    Icon: NotebookPen,
+    href: "/notes",
+    children: [],
   },
   {
     title: "Chat",

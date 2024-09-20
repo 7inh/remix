@@ -24,8 +24,6 @@ const SideBar = () => {
             />
           );
         })}
-
-        {/* <hr className="my-2 border-blue-gray-50" /> */}
       </nav>
     </div>
   );
