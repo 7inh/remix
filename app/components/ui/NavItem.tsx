@@ -53,37 +53,35 @@ const NavItem = (props: NavItemProps) => {
       </CollapsibleTrigger>
       <CollapsibleContent>
         {subNav.length ? (
-          <div className="overflow-hidden">
-            <div className="block w-full py-1 font-sans text-sm antialiased font-light leading-normal text-gray-700">
-              <nav className="flex flex-col gap-1 p-0 font-sans text-base font-normal text-gray-500">
-                {subNav.map((child) => {
-                  const { title, href } = child;
-                  return (
-                    <Link
-                      to={href}
-                      key={child.title}
-                      role="button"
-                      className="hover:bg-zinc-200 overflow-hidden flex items-center p-2.5 py-2 leading-tight transition-all rounded-lg hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80"
-                    >
-                      <div className="grid mr-4 place-items-center">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          strokeWidth={3}
-                          stroke="currentColor"
-                          aria-hidden="true"
-                          className="w-5 h-3"
-                        >
-                          <circle cx={12} cy={12} r={3} fill="currentColor" />
-                        </svg>
-                      </div>
-                      {title}
-                    </Link>
-                  );
-                })}
-              </nav>
-            </div>
+          <div className="block w-full py-1 font-sans text-sm antialiased font-light leading-normal text-gray-700">
+            <nav className="flex flex-col gap-1 p-0 font-sans text-base font-normal text-gray-500">
+              {subNav.map((child) => {
+                const { title, href } = child;
+                return (
+                  <Link
+                    to={href}
+                    key={child.title}
+                    role="button"
+                    className="hover:bg-zinc-200 overflow-hidden flex items-center p-2.5 py-2 leading-tight transition-all rounded-lg hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80"
+                  >
+                    <div className="grid mr-4 place-items-center">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={3}
+                        stroke="currentColor"
+                        aria-hidden="true"
+                        className="w-5 h-3"
+                      >
+                        <circle cx={12} cy={12} r={3} fill="currentColor" />
+                      </svg>
+                    </div>
+                    {title}
+                  </Link>
+                );
+              })}
+            </nav>
           </div>
         ) : null}
       </CollapsibleContent>

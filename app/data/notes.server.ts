@@ -25,3 +25,15 @@ export async function listNotes(authorId: number): Promise<Note[]> {
     },
   });
 }
+
+export async function updateNote(
+  noteId: number,
+  payload: Partial<Note>
+): Promise<Note> {
+  return prisma.note.update({
+    where: {
+      id: noteId,
+    },
+    data: payload,
+  });
+}

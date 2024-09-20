@@ -6,7 +6,7 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "./generated/client"
+  // output   = "./generated/client"
 }
 
 datasource db {
@@ -38,4 +38,5 @@ model Note {
   author  User    @relation(fields: [authorId], references: [id])
   authorId Int
   createdAt DateTime? @default(now())
+  favorite Boolean @default(false)
 }

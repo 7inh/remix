@@ -1,6 +1,5 @@
 import {
   AtSign,
-  BookUser,
   CalendarDays,
   LayoutDashboard,
   MessagesSquare,
@@ -92,19 +91,19 @@ export const SIDE_BAR = [
       // },
     ],
   },
-  {
-    title: "Users",
-    Icon: BookUser,
-    href: "/users",
-    children: [
-      {
-        title: "All Users",
-        href: "/users/all",
-      },
-      {
-        title: "Add User",
-        href: "/users/add",
-      },
-    ],
-  },
+  // {
+  //   title: "Users",
+  //   Icon: BookUser,
+  //   href: "/users",
+  //   children: [
+  //     {
+  //       title: "All Users",
+  //       href: "/users/all",
+  //     },
+  //     {
+  //       title: "Add User",
+  //       href: "/users/add",
+  //     },
+  //   ],
+  // },
 ];
