@@ -31,6 +31,9 @@ const NoteCard = ({ note }: NodeCardProps) => {
   const fetcher = useFetcher();
   const isUpdated = fetcher.formData ? true : null;
   const preState = usePrevious(isUpdated);
+  const favorite = fetcher.formData
+    ? fetcher.formData.get("favorite") === "true"
+    : note.favorite;
 
   const [isEditing, setIsEditing] = useState(false);
 
@@ -103,7 +106,7 @@ const NoteCard = ({ note }: NodeCardProps) => {
           >
             <Star
               className={`size-4 ${
-                note.favorite ? "fill-yellow-400" : "text-zinc-700"
+                favorite ? "fill-yellow-400" : "text-zinc-700"
               }`}
             />
           </button>
