@@ -31,10 +31,7 @@ const HookFormWrapper = <T extends FieldValues, P = T>({
   ...rest
 }: HookFormWrapperProps<T, P>) => {
   const methods = useForm<T>();
-  const {
-    handleSubmit,
-    formState: { isSubmitting },
-  } = methods;
+  const { handleSubmit } = methods;
 
   const onSubmit = useCallback(
     async (data: any) => {
@@ -61,11 +58,6 @@ const HookFormWrapper = <T extends FieldValues, P = T>({
 
   return (
     <FormProvider {...methods}>
-      {isSubmitting && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="w-16 h-16 border-t-4 border-blue-500 rounded-full animate-spin"></div>
-        </div>
-      )}
       <form
         ref={ref}
         className={className}

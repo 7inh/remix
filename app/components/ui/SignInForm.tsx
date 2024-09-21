@@ -1,3 +1,4 @@
+import { ReloadIcon } from "@radix-ui/react-icons";
 import { Link } from "@remix-run/react";
 import { Button } from "~/components/ui/Button";
 import { Checkbox } from "~/components/ui/checkbox";
@@ -8,10 +9,19 @@ import { cn } from "~/lib/utils";
 
 export interface SignInFormProps
   extends Omit<React.HTMLAttributes<HTMLFormElement>, "onSubmit"> {
-  onSubmit: (data: Record<string, string>) => void;
+  onSubmit: (data: Record<string, string | number | boolean>) => void;
+  fetcherState?: "idle" | "loading" | "submitting";
 }
 
-const SignInForm = ({ className, onSubmit, ...props }: SignInFormProps) => {
+const SignInForm = ({
+  className,
+  onSubmit,
+  fetcherState,
+  ...props
+}: SignInFormProps) => {
+  const isSubmitting =
+    fetcherState === "submitting" || fetcherState === "loading";
+
   return (
     <HookFormWrapper
       className={cn("space-y-3.5 p-6 rounded-lg bg-white", className)}
@@ -41,7 +51,12 @@ const SignInForm = ({ className, onSubmit, ...props }: SignInFormProps) => {
           Forgot Password?
         </Link>
       </div>
-      <Button type="submit" className="w-full">
+      <Button type="submit" className="w-full" disabled={isSubmitting}>
+        <ReloadIcon
+          className={`${
+            isSubmitting ? "block" : "hidden"
+          } mr-2 h-4 w-4 animate-spin`}
+        />
         Sign In
       </Button>
     </HookFormWrapper>
