@@ -22,6 +22,9 @@ export async function listNotes(authorId: number): Promise<Note[]> {
     },
     orderBy: [
       {
+        favorite: "desc",
+      },
+      {
         createdAt: "desc",
       },
       {

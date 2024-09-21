@@ -6,6 +6,7 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
+import { GlobalLoading } from "~/components/ui/GlobalLoading";
 import stylesheet from "~/tailwind.css?url";
 
 export const links: LinksFunction = () => [
@@ -22,6 +23,7 @@ export default function App() {
         <Links />
       </head>
       <body>
+        <GlobalLoading />
         <Outlet />
         <ScrollRestoration />
         <Scripts />
