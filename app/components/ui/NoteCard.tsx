@@ -90,49 +90,51 @@ const NoteCard = ({ note }: NodeCardProps) => {
           ></textarea>
           <NoteController />
         </form>
-      ) : null}
-      <div>
-        {/* <h4 className="text-gray-800 dark:text-gray-100 font-bold mb-3">
-          {note.title}
-        </h4> */}
-        <p className="text-gray-800 dark:text-gray-100 text-sm">{note.body}</p>
-      </div>
-      <div className="opacity-0 group-hover:opacity-100 transition-all duration-500">
-        <div className="flex items-center justify-between text-gray-800 dark:text-gray-100 gap-2">
-          <p className="text-sm flex-grow">
-            {note.createdAt &&
-              new Date(note.createdAt).toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}
-          </p>
-          <button
-            onClick={handleToggleFavorite}
-            className={`size-6 rounded-full ring-1 ${
-              note.favorite ? "ring-zinc-700" : "ring-zinc-700"
-            } text-white flex items-center justify-center`}
-          >
-            <Star
-              className={`size-4 ${
-                favorite ? "fill-zinc-700" : "text-zinc-700"
-              }`}
-            />
-          </button>
-          <button
-            onClick={() => setIsEditing(true)}
-            className="size-6 rounded-full text-zing-700 ring-1 ring-zinc-900 flex items-center justify-center"
-          >
-            <Pencil className="size-3" />
-          </button>
-          <button
-            onClick={handleDelete}
-            className={`hover:bg-destructive hover:text-white size-6 rounded-full ring-1 ring-destructive text-destructive flex items-center justify-center`}
-          >
-            <Trash2 className="size-4" />
-          </button>
-        </div>
-      </div>
+      ) : (
+        <>
+          <div>
+            <p className="text-gray-800 dark:text-gray-100 text-sm">
+              {note.body}
+            </p>
+          </div>
+          <div className="opacity-0 group-hover:opacity-100 transition-all duration-300">
+            <div className="flex items-center justify-between text-gray-800 dark:text-gray-100 gap-2">
+              <p className="text-sm flex-grow">
+                {note.createdAt &&
+                  new Date(note.createdAt).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}
+              </p>
+              <button
+                onClick={handleToggleFavorite}
+                className={`size-6 rounded-full ring-1 ${
+                  note.favorite ? "ring-zinc-700" : "ring-zinc-700"
+                } text-white flex items-center justify-center`}
+              >
+                <Star
+                  className={`size-4 ${
+                    favorite ? "fill-zinc-700" : "text-zinc-700"
+                  }`}
+                />
+              </button>
+              <button
+                onClick={() => setIsEditing(true)}
+                className="size-6 rounded-full text-zing-700 ring-1 ring-zinc-900 flex items-center justify-center"
+              >
+                <Pencil className="size-3" />
+              </button>
+              <button
+                onClick={handleDelete}
+                className={`hover:bg-destructive hover:text-white size-6 rounded-full ring-1 ring-destructive text-destructive flex items-center justify-center`}
+              >
+                <Trash2 className="size-4" />
+              </button>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 };

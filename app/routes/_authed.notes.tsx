@@ -1,4 +1,8 @@
-import { ActionFunctionArgs, MetaFunction } from "@remix-run/node";
+import {
+  ActionFunctionArgs,
+  LoaderFunctionArgs,
+  MetaFunction,
+} from "@remix-run/node";
 import { useFetcher, useLoaderData } from "@remix-run/react";
 import { CircleCheck, Palette } from "lucide-react";
 import { Button } from "~/components/ui/Button";
@@ -9,6 +13,7 @@ import {
   listNotes,
   updateNote,
 } from "~/data/notes.server";
+import { userFromRequest } from "~/web/auth.server";
 
 export interface NotesPageProps {}
 
@@ -26,8 +31,8 @@ export const meta: MetaFunction = () => {
   ];
 };
 
-export const loader = async () => {
-  const userId = 1; // TODO: get the user id from the cookie
+export const loader = async ({ request }: LoaderFunctionArgs) => {
+  const { userId } = await userFromRequest(request);
   const notes = await listNotes(userId);
 
   return { notes };
