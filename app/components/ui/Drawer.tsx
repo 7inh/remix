@@ -26,7 +26,7 @@ const Drawer = ({ open, onClose }: DrawerProps) => {
           <Button
             variant="ghost"
             size="icon"
-            className="absolute z-[51] right-3 top-3"
+            className="absolute z-[51] right-3 top-3 size-9"
             onClick={onClose}
           >
             <X className="text-zinc-500" />

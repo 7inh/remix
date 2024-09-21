@@ -10,7 +10,12 @@ const AppBar = () => {
   return (
     <>
       <nav className="pt-2.5">
-        <Button variant="ghost" size="icon" onClick={() => setOpen(true)}>
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={() => setOpen(true)}
+          className="size-9"
+        >
           <Menu className="text-zinc-500" />
         </Button>
       </nav>
