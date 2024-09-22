@@ -1,6 +1,9 @@
 import { createCookie, redirect } from "@remix-run/node";
 import { SERVER_ENV } from "~/env/env.server";
 
+const ONE_HOUR = 3600;
+const ONE_YEAR = 31536000;
+
 const authCookie = createCookie("auth", {
   secrets: [SERVER_ENV.SECRET_KEY_BASE],
   sameSite: "strict",
@@ -21,7 +24,7 @@ export async function authenticate(
           userId: user.id,
         },
         {
-          maxAge: rememberMe ? 31536000 : 3600,
+          maxAge: rememberMe ? ONE_YEAR : ONE_HOUR,
         }
       ),
     },

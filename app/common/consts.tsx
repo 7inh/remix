@@ -1,9 +1,11 @@
 import {
   AtSign,
+  Bell,
   CalendarDays,
   LayoutDashboard,
   MessagesSquare,
   NotebookPen,
+  PiggyBank,
   Settings,
   SquareCheck,
 } from "lucide-react";
@@ -21,12 +23,12 @@ export const SIDE_BAR = [
     href: "/mail",
     children: [],
   },
-  // {
-  //   title: "Notifications",
-  //   Icon: Bell,
-  //   href: "/notifications",
-  //   children: [],
-  // },
+  {
+    title: "Notifications",
+    Icon: Bell,
+    href: "/notifications",
+    children: [],
+  },
   {
     title: "Calendar",
     Icon: CalendarDays,
@@ -56,6 +58,12 @@ export const SIDE_BAR = [
     title: "Notes",
     Icon: NotebookPen,
     href: "/notes",
+    children: [],
+  },
+  {
+    title: "Money Notes",
+    Icon: PiggyBank,
+    href: "/money-notes",
     children: [],
   },
   {
