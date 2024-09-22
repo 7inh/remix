@@ -4,6 +4,7 @@ import {
   CalendarDays,
   LayoutDashboard,
   MessagesSquare,
+  Newspaper,
   NotebookPen,
   PiggyBank,
   Settings,
@@ -58,6 +59,12 @@ export const SIDE_BAR = [
     title: "Notes",
     Icon: NotebookPen,
     href: "/notes",
+    children: [],
+  },
+  {
+    title: "News",
+    Icon: Newspaper,
+    href: "/news",
     children: [],
   },
   {
