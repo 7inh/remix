@@ -34,7 +34,7 @@ const CustomDateCell = ({ value }: { value: object }) => {
   const lunarDayPadStart = lunarDayNumber.padStart(2, "0");
 
   return (
-    <div className={`rbc-day-bg text-red-400`}>
+    <div className={`rbc-day-bg text-red-400 px-1`}>
       <div>
         {lunarDayNumber === "1"
           ? `${lunarDayPadStart}/${lunarMonth.padStart(2, "0")}`
