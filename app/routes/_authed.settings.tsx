@@ -63,7 +63,7 @@ const SettingsPage = () => {
             </a>
           </nav>
         </aside>
-        <div className="overflow-auto w-full flex-1 h-full">
+        <div className="overflow-auto w-full flex-1">
           <div className="max-w-2xl flex-1 pl-2 h-[calc(100%+200px)]">
             <div className="space-y-6 ">
               <div>
